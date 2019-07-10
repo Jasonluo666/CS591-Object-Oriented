@@ -1,4 +1,3 @@
-package TicTacToeNew;
 
 public class Marker {
 	private char symbol;
@@ -8,62 +7,65 @@ public class Marker {
 	private final char sym3 = ' ';
 	
 	
-	// constructor method
-	public Marker(char sym, int value) {
-		if (sym == sym1) {
-			if (value != 3)
-				throw new IllegalArgumentException();
-			else {
-				setSym(sym);
-				setVal(value);
-			}
-		
-		} else if (sym == sym2) {
-			if (value != -3)
-				throw new IllegalArgumentException();
-			else {
-				setSym(sym);
-				setVal(value);
-			}
-		
-		} else if (sym == sym3){
-			if (value != 0)
-				throw new IllegalArgumentException();
-			else {
-				setSym(sym);
-				setVal(value);
-			}
-		}
-	}
+//	// constructor method
+//	public Marker(char sym, int value) {
+//		if (sym == sym1) {
+//			if (value != 3)
+//				throw new IllegalArgumentException();
+//			else {
+//				setSym(sym);
+//				setVal(value);
+//			}
+//		
+//		} else if (sym == sym2) {
+//			if (value != -3)
+//				throw new IllegalArgumentException();
+//			else {
+//				setSym(sym);
+//				setVal(value);
+//			}
+//		
+//		} else if (sym == sym3){
+//			if (value != 0)
+//				throw new IllegalArgumentException();
+//			else {
+//				setSym(sym);
+//				setVal(value);
+//			}
+//		}
+//	}
 	
-	// constructor method
+	//constructor method
 	public Marker(char sym) {
-		if (sym == sym1) 
-			this(sym, 3);
-		else if (sym == sym2)
-			this(sym, -3);
-		else if (sum == sym3)
-			this(sym,0);
+		if (sym == sym1) {
+			setVal(3);
+			setSym(sym);
+		}
+		else if (sym == sym2) {
+			setVal(-3);
+			setSym(sym);
+		}
+		else if (sym == sym3) {
+			setVal(0);
+			setSym(sym);
+		}
+		else {
+			throw new IllegalArgumentException();
+		}
 	}
 	
 	// constructor method
 	public Marker() {
-		this(' ',0);
+		this(' ');
 	}
 	
 	// setter method - symbols
 	public void setSym(char sym) {
-		if (sym != sym1 || sym != sym2 || sym != sym3) {
-			throw new IllegalArgumentException();
-		}
 		this.symbol = sym;
 	}
 		
 	// setter method - value
 	public void setVal(int value) {
-		if (value != 0 || value != 3 || value != -3) {
-			throw new IllegalArgumentException();
-		}
 		this.val = value;
 	}
 	
@@ -84,7 +86,7 @@ public class Marker {
 		
 	// overwriting toString method
 	public String toString() {
-		return symbol;
+		return Character.toString(symbol);
 	}
 	
 }

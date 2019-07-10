@@ -1,10 +1,9 @@
-package TicTacToeNew;
 
 public class Tile {
 	private int x;
 	private int y;
 	private Marker marker;
-	private Color clr;
+	private String color;
 	
 	// constructor method
 	public Tile(int xpos, int ypos, Marker mrk) {
@@ -15,7 +14,7 @@ public class Tile {
 	
 	// constructor method
 	public Tile(int xpos, int ypos) {
-		this(xpos,ypos,Marker());
+		this(xpos,ypos, new Marker());
 	}
 	
 	// accessor method
@@ -40,7 +39,7 @@ public class Tile {
 	
 	// overwriting toString method
 	public String toString() {
-		return marker;
+		return marker.toString();
 	}
 	
 	// setter method - x position
@@ -61,10 +60,11 @@ public class Tile {
 	
 	// setter method - marker
 	public void setMrk(Marker mkr) {
-		if (mkr.getValue() != 0 || mkr.getValue() != 3 || mkr.getValue() != -3) {
+		if (mkr.getVal() != 0 || mkr.getVal() != 3 || mkr.getVal() != -3) {
 			throw new IllegalArgumentException();
 		}
 		this.marker = mkr;
 	}
 	
+
 }
