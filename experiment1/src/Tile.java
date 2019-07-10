@@ -4,6 +4,15 @@ public class Tile {
 	private int y;
 	private Marker marker;
 	private String color;
+	private int id;
+	
+	public void setID(int id) {
+		this.id = id;
+	}
+	
+	public int getID() {
+		return id;
+	}
 	
 	// constructor method
 	public Tile(int xpos, int ypos, Marker mrk) {
