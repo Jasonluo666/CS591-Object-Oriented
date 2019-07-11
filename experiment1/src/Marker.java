@@ -1,39 +1,9 @@
-
 public class Marker {
 	private char symbol;
 	private int val;
 	private final char sym1 = 'X';
 	private final char sym2 = 'O';
 	private final char sym3 = ' ';
-	
-	
-//	// constructor method
-//	public Marker(char sym, int value) {
-//		if (sym == sym1) {
-//			if (value != 3)
-//				throw new IllegalArgumentException();
-//			else {
-//				setSym(sym);
-//				setVal(value);
-//			}
-//		
-//		} else if (sym == sym2) {
-//			if (value != -3)
-//				throw new IllegalArgumentException();
-//			else {
-//				setSym(sym);
-//				setVal(value);
-//			}
-//		
-//		} else if (sym == sym3){
-//			if (value != 0)
-//				throw new IllegalArgumentException();
-//			else {
-//				setSym(sym);
-//				setVal(value);
-//			}
-//		}
-//	}
 	
 	//constructor method
 	public Marker(char sym) {
@@ -48,6 +18,7 @@ public class Marker {
 		else if (sym == sym3) {
 			setVal(0);
 			setSym(sym);
+			
 		}
 		else {
 			throw new IllegalArgumentException();
@@ -88,5 +59,4 @@ public class Marker {
 	public String toString() {
 		return Character.toString(symbol);
 	}
-	
 }

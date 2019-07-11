@@ -1,31 +1,34 @@
-//
-//public class player {
-//	private int wins =0;
-//	
-//	public int getWins() {
-//		return wins;
-//	}
-//	
-//	public void setWins() {
-//		wins++;
-//	}
-//}
-
 import java.util.Scanner;
 
 public class Player {
 	private Marker marker;
 	private String name;
-	private ScoreCard score;
+	private ScoreCard scoreCard;
 	private char symbol;
+	
+	public Marker getMarker() {
+		return marker;
+	}
+	
+	// record the wins
+	public void setWin() {
+		scoreCard.setWin();
+	}
+	
+	// record the loses
+	public void setLose() {
+		scoreCard.setLose();
+	}
+
 	
 	public Player() {}
 	
+	// construct the player object
 	public Player(String name,char sym) {
 		this.name = name;
 		this.symbol = sym;
 		this.marker = new Marker(sym);
-		this.score = new ScoreCard();
+		this.scoreCard = new ScoreCard();
 	}
 	
 	public void setName(String name) {
@@ -44,18 +47,22 @@ public class Player {
 		return symbol;
 	}
 	
+	// ask player for input
 	public void makeMove(Board board) {
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.print("Player " + name + " - make your move: ");
+		System.out.println("Player " + name + " - make your move: ");
+		
+		// make a move
 		int x;
 		x = scan.nextInt();
 		
-		board.board = board.board.replaceFirst(Integer.toString(x), marker.toString());
-
+		// update the board
+		board.contains(x,marker);
 	}
 	
+	// print out the current score of this player
 	public void showScore() {
-		System.out.print("Player " + name + " wins " + score.getWin() + " times, loses " + score.getLose() + "times\n");
+		System.out.println("Player " + name + " wins " + scoreCard.getWin() + " times, loses " + scoreCard.getLose() + " times.\n");
 	}
 }

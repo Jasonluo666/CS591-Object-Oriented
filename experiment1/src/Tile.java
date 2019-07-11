@@ -1,9 +1,17 @@
-
 public class Tile {
 	private int x;
 	private int y;
 	private Marker marker;
 	private String color;
+	private int id = 0;
+	
+	public void setID(int id) {
+		this.id = id;
+	}
+	
+	public int getID() {
+		return id;
+	}
 	
 	// constructor method
 	public Tile(int xpos, int ypos, Marker mrk) {
@@ -60,11 +68,9 @@ public class Tile {
 	
 	// setter method - marker
 	public void setMrk(Marker mkr) {
-		if (mkr.getVal() != 0 || mkr.getVal() != 3 || mkr.getVal() != -3) {
+		if (mkr.getVal() != 0 && mkr.getVal() != 3 && mkr.getVal() != -3) {
 			throw new IllegalArgumentException();
 		}
 		this.marker = mkr;
 	}
-	
-
 }
