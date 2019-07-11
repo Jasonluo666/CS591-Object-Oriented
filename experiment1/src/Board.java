@@ -1,100 +1,162 @@
-//
-//public class board {
-//
-//	public void showBoard(char[][] map)	
-//	{
-//		System.out.println("-------------");
-//		for(int i=0;i<3;i++)
-//		{
-//			System.out.print("|");
-//			for(int j=0;j<3;j++)
-//			{
-////				if(map[i][j]!='\u0000')
-////					System.out.print(" "+map[i][j]+" |");
-////				else
-////					System.out.print("   |");
-//		
-//					System.out.print(" "+map[i][j]+" |");
-//			}
-//			System.out.println();
-//			System.out.println("-------------");
-//		}
-//	}
-//}
-
 import java.util.Scanner;
+import java.util.Arrays;
 
 
 public class Board {
 	public int length, width;
 	public String board;
+	public Tile[][] aboard = new Tile[length][length];
 	public int acc = 1;
 	
 	public Board(int length) {
+		int acc2 = this.acc;
 		this.length = length;
 		this.width = length;
-		this.makeBoard(length,length);
+		Tile[][] bboard = new Tile[this.length][this.length];
+		
+		for (int i = 0; i < length; i++) {
+			Tile[] row = new Tile[length];
+			for (int j = 0; j < length; j++) {
+				row[j] = new Tile(i,j, new Marker(' '));
+				//row[j].setID(0);
+				row[j].setID(acc2);
+				acc2++;
+			}
+			bboard[i] = row;
+		}
+		aboard = bboard;
 	}
+	
+
 	
 	public String makeRoof(int length) {
 		String roof = "+";
-		String piece = "--+";
+		String piece = "---+";
 		for (int i = 0; i < this.length; i++) {
 			roof += piece;
 		}
 		return roof;
 	}
+
 	
-	public String makeBoard(int length, int width) {
-		String tile = " |";
-		String roof = makeRoof(length);
-		board = roof + "\n";
-		for (int i = 0; i < length; i++) {
-			for (int j = 0; j < width; j++) {
+	public String toString() {
+	String barrier = " |";
+	String roof = makeRoof(length);
+	board = roof + "\n";
+	for (int i = 0; i < length; i++) {
+		for (int j = 0; j < width; j++) {
+			if (aboard[i][j].getMarker().getSym() == ' ') {
 				if (j == 0) {
-					board += "|" + Integer.toString(acc) + tile;
+					if (acc < 10) {
+						board += "|" + aboard[i][j].getID() + " " + barrier;
+					}
+					else {
+					board += "|" + aboard[i][j].getID() + " " + barrier;
+					}
 					acc++;
 				}
 				else {
-				board += Integer.toString(acc) + tile;
-				acc++;
+					if (acc < 10) {
+						board += aboard[i][j].getID() + " " + barrier;
+					}
+					else {
+					board += aboard[i][j].getID() + " " + barrier;
+					}
+					acc++;
 				}
 			}
-			board+= "\n" + roof + "\n";
+			else {
+				if (j == 0) {
+					board += "|" + aboard[i][j].getMarker().toString() + " " + barrier;
+					acc++;
+				}
+				else {
+					board += aboard[i][j].getMarker().toString() + " " + barrier;
+					acc++;
+				}
+			}
+		}
+		board+= "\n" + roof + "\n";
 		}
 		return(board);
 	}
 	
-//	public String makeMove( Marker marker) {
-//		System.out.println(board);
-//		System.out.println("Player " + marker + ", please enter in your move: ");
-//		Scanner scan = new Scanner(System.in);
-//		// make sure input is int and is >0 and <acc OR just check if the int is in the board string
-//		int choice = scan.nextInt();
-//		board = board.replaceFirst(Integer.toString(choice), marker);
-//		return board;
-//	}
-
-	
-	
-	
-	public static void main(String[] args) {
-//		Board ex = new Board(5);
-//		System.out.println(ex.makeBoard(ex.length, ex.width));
-//		ex.makeMove("X");
-//		ex.makeMove("O");
-//		System.out.println(ex.board);
-////		
-//		String a = ex.board;
-//		System.out.println(a);
-//		a = a.replace("2", "fu");
-//		System.out.println(a);
-//		
+	public boolean contains(int id, Marker marker) {
+		// if the id is in range, proceed
+		if (id >0 && id <=(length*length)) {
+			for (int i = 0; i < length; i++) {
+				for (int j = 0; j < length; j++) {
+					
+					// if found the cell
+					if (id == aboard[i][j].getID()) {
+						// if the cell isn't empty, user selects again
+						if (aboard[i][j].getMarker().getSym() != ' ') {
+							System.out.println("Cell occupied. Please select again.");
+							Scanner scan = new Scanner(System.in);
+							int newID = scan.nextInt();
+							return contains(newID, marker);
+						}
+						aboard[i][j].setMrk(marker);
+						return true;
+					}
+				}
+			}
+		}
+		else {
+			System.out.println("Cell number out of range. Please select again.");
+			Scanner scan = new Scanner(System.in);
+			int newID = scan.nextInt();
+			return contains(newID, marker);
+		}
 		
-//		String text = "test";
-//		text = text.replace("es", "x");
-//		System.out.println(text);
-	}
+		return false;
+	}	
+	
+	public Marker checkWin() {
+		
+		for(int i=0;i<aboard.length;i++)//row check
+			{
+				int count = 0;
+				for(int j=0;j<aboard[i].length;j++)
+				{
+					count += aboard[i][j].getMarker().getVal();
+				}
+				if(count == aboard.length * 3 || count == -aboard.length * 3)
+				{
+					return aboard[i][0].getMarker();
+				}
+			}
+			
+			for(int i=0;i<aboard.length;i++)//column check
+			{
+				int count = 0;
+				for(int j=0;j<aboard[i].length;j++)
+				{
+					count += aboard[j][i].getMarker().getVal();
+				}
+				if(count == aboard.length * 3 || count == -aboard.length * 3)
+				{
+					return aboard[0][i].getMarker();
+				}
+			}
+			
+			int diagonal_count = 0, anti_diagonal_count = 0;
+			for(int i=0;i<aboard.length;i++)//diagonal check
+			{
+				diagonal_count += aboard[i][i].getMarker().getVal();
+				anti_diagonal_count += aboard[i][aboard.length - i - 1].getMarker().getVal();
+				
+			}
+			if(diagonal_count == aboard.length * 3 || diagonal_count == -aboard.length * 3)
+			{
+				return aboard[0][0].getMarker();
+			}
+			else if(anti_diagonal_count == aboard.length * 3 || anti_diagonal_count == -aboard.length * 3)
+			{
+				return aboard[0][aboard.length - 1].getMarker();
+			}
+			return null;
+		}
 
 }
 

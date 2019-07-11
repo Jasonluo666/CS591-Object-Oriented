@@ -4,8 +4,6 @@ public class ScoreCard {
 		private int lose_time;
 		
 		public ScoreCard() {
-			// TODO Auto-generated constructor stub
-			
 			this.win_time = this.lose_time = 0;
 		}
 		
@@ -13,7 +11,7 @@ public class ScoreCard {
 			this.win_time++;
 		}
 		
-		public void setLost() {
+		public void setLose() {
 			this.lose_time++;
 		}
 		
