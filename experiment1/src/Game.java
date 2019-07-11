@@ -20,7 +20,7 @@ public class Game{
 		
 		
 		String name = scan.nextLine();
-		System.out.print("Please input Player 1's symbol: capital X or O");
+		System.out.print("Please input Player 1's symbol, capital X or O: ");
 		String sym = scan.nextLine();
 		
 		playerOne = new Player(name,sym.charAt(0));
@@ -28,7 +28,7 @@ public class Game{
 		System.out.print("Please input Player 2's name: ");
 		name = scan.nextLine();
 		
-		System.out.print("Please input Player 2's symbol: capital X or O");
+		System.out.print("Please input Player 2's symbol, capital X or O: ");
 		sym = scan.nextLine();
 		playerTwo = new Player(name,sym.charAt(0));
 	}
