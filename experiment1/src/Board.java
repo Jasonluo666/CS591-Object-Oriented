@@ -40,7 +40,7 @@ public class Board {
 	}
 
 	
-	public String toString() {  // 
+	public String toString() {  
 	String barrier = " |";
 	String roof = makeRoof(length);
 	board = roof + "\n";
@@ -48,25 +48,25 @@ public class Board {
 		for (int j = 0; j < width; j++) {
 			if (aboard[i][j].getMarker().getSym() == ' ') { // if there is no marker in tile
 				if (j == 0) { // if beginning a new row
-					if (acc < 10) { // if num is < 10, give one space 
+					if (aboard[i][j].getID() < 10) { // if num is < 10, give one space 
 						board += "|" + aboard[i][j].getID() + " " + barrier;
 					}
 					else {
-						board += "|" + aboard[i][j].getID() + barrier; // used to be + " " + barrier
+						board += "|" + aboard[i][j].getID() + barrier; 
 					}
 					acc++;
 				}
 				else {
-					if (acc < 10) {
+					if (aboard[i][j].getID() < 10) { // if num is < 10, give one space
 						board += aboard[i][j].getID() + " " + barrier;
 					}
 					else {
-						board += aboard[i][j].getID() + barrier; // used to be + " " + barrier
+						board += aboard[i][j].getID() + barrier; 
 					}
 					acc++;
 				}
 			}
-			else { // there is a 
+			else { // there is a marker:
 				if (j == 0) {
 					board += "|" + aboard[i][j].getMarker().toString() + " " + barrier;
 					acc++;
