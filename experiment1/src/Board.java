@@ -4,10 +4,11 @@ import java.util.Arrays;
 
 public class Board {
 	public int length, width;
-	public String board;
-	public Tile[][] aboard = new Tile[length][length];
-	public int acc = 1;
+	public String board; // string representation of board
+	public Tile[][] aboard = new Tile[length][length]; // board of Tiles
+	public int acc = 1; // used for filling board with ints
 	
+	// creates a double array of Tiles, points aboard to it
 	public Board(int length) {
 		int acc2 = this.acc;
 		this.length = length;
@@ -28,8 +29,8 @@ public class Board {
 	}
 	
 
-	
-	public String makeRoof(int length) {
+	// creates lines that goes above and below tile rows
+	public String makeRoof(int length) { 
 		String roof = "+";
 		String piece = "---+";
 		for (int i = 0; i < this.length; i++) {
@@ -39,19 +40,19 @@ public class Board {
 	}
 
 	
-	public String toString() {
+	public String toString() {  // 
 	String barrier = " |";
 	String roof = makeRoof(length);
 	board = roof + "\n";
 	for (int i = 0; i < length; i++) {
 		for (int j = 0; j < width; j++) {
-			if (aboard[i][j].getMarker().getSym() == ' ') {
-				if (j == 0) {
-					if (acc < 10) {
+			if (aboard[i][j].getMarker().getSym() == ' ') { // if there is no marker in tile
+				if (j == 0) { // if beginning a new row
+					if (acc < 10) { // if num is < 10, give one space 
 						board += "|" + aboard[i][j].getID() + " " + barrier;
 					}
 					else {
-					board += "|" + aboard[i][j].getID() + " " + barrier;
+						board += "|" + aboard[i][j].getID() + barrier; // used to be + " " + barrier
 					}
 					acc++;
 				}
@@ -60,12 +61,12 @@ public class Board {
 						board += aboard[i][j].getID() + " " + barrier;
 					}
 					else {
-					board += aboard[i][j].getID() + " " + barrier;
+						board += aboard[i][j].getID() + barrier; // used to be + " " + barrier
 					}
 					acc++;
 				}
 			}
-			else {
+			else { // there is a 
 				if (j == 0) {
 					board += "|" + aboard[i][j].getMarker().toString() + " " + barrier;
 					acc++;
@@ -81,6 +82,7 @@ public class Board {
 		return(board);
 	}
 	
+	// checks Tile marker at int ID
 	public boolean contains(int id, Marker marker) {
 		// if the id is in range, proceed
 		if (id >0 && id <=(length*length)) {
@@ -114,7 +116,7 @@ public class Board {
 	
 	public Marker checkWin() {
 		
-		for(int i=0;i<aboard.length;i++)//row check
+		for(int i=0;i<aboard.length;i++) //row check
 			{
 				int count = 0;
 				for(int j=0;j<aboard[i].length;j++)
@@ -127,7 +129,7 @@ public class Board {
 				}
 			}
 			
-			for(int i=0;i<aboard.length;i++)//column check
+			for(int i=0;i<aboard.length;i++) //column check
 			{
 				int count = 0;
 				for(int j=0;j<aboard[i].length;j++)
@@ -141,7 +143,7 @@ public class Board {
 			}
 			
 			int diagonal_count = 0, anti_diagonal_count = 0;
-			for(int i=0;i<aboard.length;i++)//diagonal check
+			for(int i=0;i<aboard.length;i++) //diagonal check
 			{
 				diagonal_count += aboard[i][i].getMarker().getVal();
 				anti_diagonal_count += aboard[i][aboard.length - i - 1].getMarker().getVal();
