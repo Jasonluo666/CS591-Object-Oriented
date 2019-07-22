@@ -3,15 +3,16 @@ import java.util.Scanner;
 
 public class Game {
 	private String player_name;
+	
 	protected Scanner scan;
 
 	Game(){
+		scan = new Scanner(System.in);
+		
 		init();
 	}
 	
 	public void init() {
-		scan = new Scanner(System.in);
-		
 		System.out.println("Brave knight!!! What is your name?");
 		player_name = scan.nextLine();
 	}
@@ -35,7 +36,8 @@ public class Game {
 		Mission[] missions = {new MissionOne(), new MissionTwo(), new MissionThree()};
 		
 		Random r = new Random();
-		missions[r.nextInt() % missions.length].setSecondTreasure(true);
+		int rand_index = Math.abs(r.nextInt()) % missions.length;
+		missions[rand_index].setSecondTreasure(true);
 		
 		for(Mission mission: missions) {
 			System.out.println("------------------------------");
