@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+// base class for all three missions
 public abstract class Mission {
 	private boolean pass;
 	private boolean second_treasure;
@@ -9,6 +10,7 @@ public abstract class Mission {
 	protected String question1, question2, extra_question, move_on;
 	protected Scanner scan;
 	
+	// define data members gthat shared by three missions
 	public Mission(){
 		pass = false;
 		second_treasure = false;
@@ -18,7 +20,7 @@ public abstract class Mission {
 		scan = new Scanner(System.in);
 	}
 	
-	
+	// print lyrics with animals in random order
 	protected void snooze() {
 		System.out.println("You have picked up the treasure, now go rest before continuing the mission.\n");
 		
@@ -67,10 +69,12 @@ public abstract class Mission {
 				"Here a cluck, there a cluck\r\n" + 
 				"Everywhere a cluck cluck");
 		
+		// shuffle the animal order
 		Collections.shuffle(part_of_lyrics);
 		System.out.println(part_of_lyrics); 
 	}
 	
+	// print the lyrics
 	protected void tricked() {
 		System.out.println("On the first day of Christmas\r\n" + 
 				"My true love gave to me\r\n" + 
@@ -176,6 +180,7 @@ public abstract class Mission {
 				"And a partridge in a pear tree");
 	}
 	
+	// setter/getter for the second treasure
 	protected boolean hasSecondTreasure() {
 		return second_treasure;
 	}
@@ -184,6 +189,7 @@ public abstract class Mission {
 		second_treasure = x;
 	}
 	
+	// setter/getter for pass variable
 	protected void setPass(boolean x) {
 		pass = x;
 	}
@@ -192,5 +198,6 @@ public abstract class Mission {
 		return pass;
 	}
 	
+	// this is the method that's overridden by the subclasses
 	abstract public void question();
 }

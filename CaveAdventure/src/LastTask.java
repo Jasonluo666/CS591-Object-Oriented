@@ -22,6 +22,7 @@ public class LastTask {
 		return pass;
 	}
 	
+	// keep asking for new words till they input the terminate word
 	public void askSpecialWord() {
 		System.out.println("You have picked up the golden helmet and are ready to move on to your final mission.");
 		
@@ -40,6 +41,7 @@ public class LastTask {
 		pass = true;
 	}
 	
+	// randomly generate words combo
 	public String generate() {
 		Random r = new Random();
 		int rand_length = Math.abs(r.nextInt()) % words.size();

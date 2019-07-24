@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
+// main class to run the game
 public class Game {
 	private String player_name;
 	
@@ -12,11 +13,13 @@ public class Game {
 		init();
 	}
 	
+	// start the game with the player name
 	public void init() {
 		System.out.println("Brave knight!!! What is your name?");
 		player_name = scan.nextLine();
 	}
 	
+	// new turn -> in case they fail and restart
 	public void newGame() {
 		System.out.println("We are in need of your help, " + player_name + "!");
 		System.out.println("Our village is being overrun by the goblins of the NorthernCaves.");
@@ -32,9 +35,11 @@ public class Game {
 			System.out.println("How dare you! Are you ready to enter the mouth of the caves (Y/N)?");
 		}
 		
+		// three tasks -> inherit from the Mission class
 		int count = 0;
 		Mission[] missions = {new MissionOne(), new MissionTwo(), new MissionThree()};
 		
+		// add an additional treasure to a task
 		Random r = new Random();
 		int rand_index = Math.abs(r.nextInt()) % missions.length;
 		missions[rand_index].setSecondTreasure(true);
@@ -49,12 +54,14 @@ public class Game {
 			count++;
 		}
 		
+		// fail the game?
 		if(count < missions.length) {
 			System.out.println("Restart the game..------------------------------");
 			newGame();
 			return;
 		}
 		
+		// gather and generate words
 		LastTask end = new LastTask();
 		while(!end.isPass()) {
 			end.askSpecialWord();
