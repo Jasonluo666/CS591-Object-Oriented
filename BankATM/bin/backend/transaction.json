@@ -1,0 +1,59 @@
+[
+	{
+		"1": 
+		[
+			{
+				"type": "Receive",
+				"sender": "Tom",
+				"receiver": "Chris",
+				"money": 100.0,
+				"investmentId": "",
+				"amount": 0,
+				"date": "04:30 PM, Sat 5/12/2018"
+			},
+			{
+				"type": "Save",
+				"sender": "Tom",
+				"receiver": "",
+				"money": 100.0,
+				"investmentId": "",
+				"amount": 0.0,
+				"date": "04:30 PM, Sat 5/12/2018"
+			},
+			{
+				"type": "Buy",
+				"sender": "Tom",
+				"receiver": "",
+				"money": 100.0,
+				"investmentId": "4",
+				"amount": 10.0,
+				"date": "04:30 PM, Sat 5/12/2018"
+			}
+		]
+
+	
+	},
+	{
+		"3":
+		[
+			{
+				"type": "Send",
+				"sender": "Chris",
+				"receiver": "Tom",
+				"money": 100.0,
+				"investmentId": "",
+				"amount": 0.0,
+				"date": "04:30 PM, Sat 5/12/2018"
+			},
+			{
+				"type": "Withdraw",
+				"sender": "Chris",
+				"receiver": "",
+				"money": 100.0,
+				"investmentId": "",
+				"amount": 0.0,
+				"date": "04:30 PM, Sat 5/12/2018"
+			}
+		]
+	}
+]

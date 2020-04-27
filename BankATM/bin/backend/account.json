@@ -1,0 +1,34 @@
+[
+	{ 
+		"aid": "1",
+		"money": 15.0,
+		"interest": 0.3,
+		"type": "checking"
+	},
+	{ 
+		"aid": "2",
+		"money": 50.0,
+		"interest": 0.3,
+		"type": "saving"
+	},
+	{ 
+		"aid": "3",
+		"money": 100.0,
+		"interest": 0.3,
+		"type": "saving"
+	},
+	{ 
+		"aid": "4",
+		"money": 100.0,
+		"interest": 0.0,
+		"type": "security"
+	},
+
+	{ 
+		"aid": "5",
+		"money": 100.0,
+		"interest": 0.3,
+		"type": "saving"
+	},
+
+]
